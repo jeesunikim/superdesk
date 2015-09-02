@@ -7,6 +7,27 @@ app.factory('BarbariansFactory', function ($http) {
 		'Team'
 	];
 
+	Barbarians.departments =[
+		'Account Management',
+		'Analytics',
+		'CMS',
+		'Creative',
+		'Executive',
+		'Finance',
+		'Human Resources',
+		'IT',
+		'Lot112',
+		'Media & Distribution',
+		'Production',
+		'Public Relations',
+		'QA',
+		'Strategy',
+		'Technology',
+		'UX'
+	];
+
+	// Maybe Team
+
 	Barbarians.allBarbarians = [];
 
 	Barbarians.create = function (newBarbarian) {

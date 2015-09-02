@@ -1,9 +1,6 @@
 app.controller('DropdownCtrl', function ($scope, $log, BarbariansFactory) {
-	$scope.items = [
-	'The first choice!',
-	'And another choice for you.',
-	'but wait! A third!'
-	];
+
+	// Name, Departments, Team	
 
 	$scope.status = {
 		isopen: false

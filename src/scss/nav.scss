@@ -1,8 +1,15 @@
 #nav {
 	width: 30%;
 	float: right;
-	margin: 1% 0;
+	margin: 1% 8% 1% 0;
 	.search {
 		float:left;
+	}
+	.selected.form-control {
+		width: 60%;
+	}
+	.selectbtn {
+		border-radius: 4px 0 0 4px;
+		background-color:rgb(247, 230,55);
 	}
 }

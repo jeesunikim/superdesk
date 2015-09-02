@@ -31,15 +31,15 @@ app.get('/', function (req, res) {
   res.sendFile(indexHtmlPath);
 });
 
-// app.get('/barbarians', function (req, res) {
-//   BarbarianModel.findById(req.query.id, function(err, barbarians) {
-//   	if(err){
-//   		res.json( {error: "Mongo Error" })
-//   	} else {
-//   		res.json(barbarians);
-//   	};
-// });
-// });
+app.get('/barbarians', function (req, res) {
+  BarbarianModel.findById(req.query.id, function(err, barbarians) {
+  	if(err){
+  		res.json( {error: "Mongo Error" })
+  	} else {
+  		res.json(barbarians);
+  	};
+});
+});
 
 app.post('/barbarians', function (req, res, next) {
 	BarbarianModel.create(req.body, function (err, newBarbarian) {

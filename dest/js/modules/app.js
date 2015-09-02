@@ -8,4 +8,4 @@ var app = angular.module('Barbarians', ['ngAnimate','ui.bootstrap']);
 // 		templateUrl: '../../views/seats.html',
 // 		controller: 'ClickDotCtrl'
 // 	})
-// });
+// });ƒ
