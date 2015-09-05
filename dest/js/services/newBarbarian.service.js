@@ -10,4 +10,5 @@ app.service('newBarbarian', function () {
 				r: null
 			}
 		};
+		
 });
