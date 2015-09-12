@@ -1,6 +1,6 @@
-app.service('newBarbarian', function () {
+app.factory('newBarbarian', function () {
 
-	this.newBarbarian = {
+	var newBarbarian = {
 			name: null,
 			department: null,
 			// team: null,
@@ -10,5 +10,7 @@ app.service('newBarbarian', function () {
 				r: null
 			}
 		};
+
+		return newBarbarian;
 		
 });

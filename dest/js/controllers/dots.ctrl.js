@@ -1,5 +1,4 @@
-app.controller('DotsCtrl', function ($scope, newBarbarian, $http, BarbariansFactory, DotsFactory) {
-
+app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, BarbariansFactory, DotsFactory) {
     // Existing Dots
     $scope.existedDots = null;
     $scope.existedDotsArr = [];
@@ -14,27 +13,24 @@ app.controller('DotsCtrl', function ($scope, newBarbarian, $http, BarbariansFact
              $scope.existedDots = res.data[i].seating;
              $scope.existedDotsArr.push($scope.existedDots);
 
-             console.log($scope.existedDotsArr, "Data");
+             
         }
+        console.log($scope.existedDotsArr, "Existed Data");
     });
 
     // dots functionality
     $scope.tools = ['circle'];
     $scope.currentTool = 0;
-    $scope.radius = 8;
+    // $scope.radius = 8;
     $scope.x = 0;
     $scope.y = 0;
     $scope.lastX = 0;
     $scope.lastY = 0;
-    $scope.sw = 5;
 
     $scope.newBarbarian = newBarbarian;
+    console.log($scope.newBarbarian.seating, "newbarbarian");
     
-    // if(!$scope.newBarbarian) {
-    //     $scope.newBarbarian
-    // };
-
-   $scope.seatDot = function (e) {
+   $scope.addDot = function (e) {
         $scope.lastX = $scope.x;
         $scope.lastY = $scope.y;
         $scope.x = e.offsetX;
@@ -45,16 +41,19 @@ app.controller('DotsCtrl', function ($scope, newBarbarian, $http, BarbariansFact
             "y": $scope.y,
             "lx": $scope.lastX,
             "ly": $scope.lastY,
-            "r": $scope.radius,
+            "r": 8,
             "f": 1,
-            "sw": $scope.sw
+            "sw": 5
         });
 
-        $scope.newBarbarian.newBarbarian.seating.x = $scope.x;
-        $scope.newBarbarian.newBarbarian.seating.y = $scope.y;
-        $scope.newBarbarian.newBarbarian.seating.r = $scope.radius;
+        $scope.newBarbarian.seating.x = $scope.x;
+        $scope.newBarbarian.seating.y = $scope.y;
+        $scope.newBarbarian.seating.r = 8;
+        DotsFactory.storedDots = angular.copy($scope.existedDotsArr);
+        console.log(DotsFactory.storedDots, "DotsFactory altogether");
+        console.log($scope.newBarbarian.seating, "seating");
 
-        console.log($scope.newBarbarian.newBarbarian.seating, "seating");
+        $rootScope.$broadcast('dotAdded', $scope.newBarbarian);
     }
 
     $scope.graph = DotsFactory.graph;

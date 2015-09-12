@@ -9,8 +9,15 @@ app.factory('DotsFactory', function () {
 	var lastX = 0;
 	var lastY = 0;
 	var sw = 5;
+	
 	DotsProps.storedDots = [];
+	
 	DotsProps.graph = {'width': 749, 'height': 1335};
+	
+	// addDots.create = function (newDot) {
+		
+
+	// };
 	
 	// DotsProps.seatDot = function (e) {
  //        this.lastX = this.x;

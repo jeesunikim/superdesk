@@ -62,7 +62,7 @@
 	<div id="superdesk" class="superdesk" ng-controller="DotsCtrl">
 	<!-- Raphael JS Map Here -->
 	  
-		<svg ng-click="seatDot($event)" ng-attr-height="{{graph.height}}" ng-attr-width="{{graph.width}}">
+		<svg ng-click="addDot($event)" ng-attr-height="{{graph.height}}" ng-attr-width="{{graph.width}}">
 		  	<image id="kort" sketch:type="MSBitmapLayer" x="-3" y="-3" width="749" height="1335" xlink:href="images/just_superdesk.png"></image>
 		  	<!-- existed dots -->
 		  	<g ng-repeat="ele in existedDotsArr">
