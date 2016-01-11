@@ -1,7 +1,7 @@
 app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, BarbariansFactory, DotsFactory){
     $scope.existedDots = null;
     $scope.existedDotsArr = [];
-
+    $scope.Barbarians = [];
     console.log(BarbariansFactory, "barbarians factory");
 
     $http({
@@ -12,6 +12,8 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
             res.data[i].seating;
             $scope.existedDots = res.data[i].seating;
             $scope.existedDotsArr.push($scope.existedDots);    
+            $scope.Barbarians.push(res.data[i]);
+            console.log($scope.Barbarians, "barbarians array");
         }
         console.log($scope.existedDotsArr, "Existed Data");
     });

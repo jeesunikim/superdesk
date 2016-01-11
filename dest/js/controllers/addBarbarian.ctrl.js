@@ -6,20 +6,24 @@ app.controller('AddCtrl', function ($scope, newBarbarian, BarbariansFactory, $ro
 	$scope.departments = BarbariansFactory.departments;
 	
 	$scope.teams = [];
-	
-	for(var i=0; i<BarbariansFactory.teams.length; i++){
-		$scope.teams.push(BarbariansFactory.teams[i]);
-	}
+	// $scope.selectedTeams = [];
+
+	// for(var i=0; i<BarbariansFactory.teams.length; i++){
+	// 	$scope.teams.push(BarbariansFactory.teams[i]);
+	// 	if($scope.teams[i].selected == true){
+	// 		$scope.selectedTeams.push($scope.team.selected)
+	// 		$scope.newBarbarian.team = team.selected;
+	// 	}
+	// }
 
 	console.log($scope.teams, "teams");
 
-	$scope.addBarbarian = function () {
+	$scope.addBarbarian = function (newBarbarian) {
 		BarbariansFactory.create($scope.newBarbarian)
 		.then(function (newBarbarian) {
 			BarbariansFactory.allBarbarians.push(newBarbarian);
 		});
 	};
-
 	$scope.$on('dotAdded', function (event, newBarbarian) {
 		$scope.newBarbarian.seating = newBarbarian.seating;
 		console.log($scope.newBarbarian.seating, "the Seats");
