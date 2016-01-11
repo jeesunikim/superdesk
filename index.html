@@ -66,25 +66,26 @@
 		<!-- Raphael JS Map Here -->
 		<svg ng-click="addDot($event)" ng-attr-height="{{graph.height}}" ng-attr-width="{{graph.width}}">
 			<image id="kort" sketch:type="MSBitmapLayer" x="-3" y="-3" width="749" height="1335" xlink:href="images/just_superdesk.png"></image>
-			<circle ng-attr-cx="{{ele.x}}" ng-attr-cy="{{ele.y}}" ng-attr-r="{{ele.r}}" stroke-width="{{ele.sw||sw}}" class="{'focus':ele.f===1}">
-			</circle>
-			<!-- existed dots -->
+			<!-- adding a new dot -->
 			<g ng-repeat="ele in existedDotsArr">
-				<g ng-switch on="ele.type">
+				<g ng-switch on="ele.seating.type">
 					<circle ng-attr-cx="{{ele.x}}" ng-attr-cy="{{ele.y}}" ng-attr-r="{{ele.r}}" stroke-width="{{ele.sw||sw}}" class="{'focus':ele.f===1}">
 					</circle>
 				</g>
 			</g>
+			<!-- existed dots -->
 			<g ng-repeat="barbarian in Barbarians">
-				<rect width="125" height="125" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y}}" stroke-width="{{barbarian.seating.sw||sw}}" style="fill: white; color: #000000" class="{'focus':barbarian.seating.f===1}">
-						
-				</rect>
-				<text fill="red">
-					<tspan dy="1.2em" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y}}">{{barbarian.name}}</tspan>
-    				<tspan dy="1.2em" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y+25}}">{{barbarian.department}}</tspan>
-				</text>
+				<g ng-switch on="barbarian.seating.type">
+					<circle ng-attr-cx="{{barbarian.seating.x}}" ng-attr-cy="{{barbarian.seating.y}}" ng-attr-r="{{barbarian.seating.r}}" stroke-width="{{barbarian.seating.sw||sw}}" class="{'focus':barbarian.seating.f===1}" ng-mouseover="showBarbarian()" ng-mouseleave="hideBarbarian()">
+					</circle>
+					<rect width="125" height="100" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y}}" stroke-width="{{barbarian.seating.sw||sw}}" style="fill: rgba(0,0,0,.5)" class="{'focus':barbarian.seating.f===1}" ng-show="barbarianInfo">
+					</rect>
+					<text fill="white">
+						<tspan dy="1.2em" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y}}" ng-show="barbarianInfo">{{barbarian.name}}</tspan>
+	    				<tspan dy="1.2em" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y+18}}" ng-show="barbarianInfo">{{barbarian.department}}</tspan>
+					</text>
+				</g>
 			</g>
-
 		</svg>
 
 	</div>

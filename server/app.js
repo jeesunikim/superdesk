@@ -31,26 +31,6 @@ app.get('/', function (req, res) {
   res.sendFile(indexHtmlPath);
 });
 
-// app.get('/barbarians', function (req, res) {
-//   BarbarianModel.findById(req.query.id, function(err, barbarians) {
-//   	if(err){
-//   		res.json( {error: "Mongo Error" })
-//   	} else {
-//   		res.json(barbarians);
-//   	};
-// });
-// });
-
-
-// app.get('/barbarians', function(req, res) {
-//     var idsToSearch = req.query.id.split(',');
-//     console.log(idsToSearch);
-//     BarbarianModel.find({'_id': { $in: idsToSearch } }, function(err, obj) {
-//         console.log(obj);
-//         res.send(obj);
-//     });
-// });
-
 app.get('/barbarians', function(req, res, next) {
     BarbarianModel.find({}).exec()
     .then(function (barbarians) {
