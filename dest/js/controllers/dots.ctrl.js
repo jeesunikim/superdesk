@@ -36,9 +36,9 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
             console.log(DotsFactory.storedDots, "DotsFactory altogether");
             console.log($scope.newBarbarian.seating, "seating");
             $rootScope.$broadcast('dotAdded', $scope.newBarbarian);
-            $scope.$on('fieldsAdded', function (event, newBarbarian) {
-                $scope.newBarbarian = newBarbarian;
-            });
+            // $scope.$on('fieldsAdded', function (event, newBarbarian) {
+            //     $scope.newBarbarian = newBarbarian;
+            // });
         }
 
     $scope.graph = DotsFactory.graph;

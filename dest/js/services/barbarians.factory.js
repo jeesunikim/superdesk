@@ -33,10 +33,22 @@ app.factory('BarbariansFactory', function ($http) {
 	}
 	
 	Barbarians.teams = [
-		'Samsung',
-		'Pepsi',
-		'Etihad',
-		'Kind'
+		{
+			"name": "Samsung",
+			"selected": false
+		},
+		{
+			"name": "Etihad",
+			"selected": false
+		},
+		{
+			"name": "Kind",
+			"selected": false
+		},
+		{
+			"name": "Pepsi",
+			"selected": false
+		}
 	]
 
 	Barbarians.allBarbarians = [];
