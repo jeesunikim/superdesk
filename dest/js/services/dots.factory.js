@@ -13,32 +13,7 @@ app.factory('DotsFactory', function () {
 	DotsProps.storedDots = [];
 	
 	DotsProps.graph = {'width': 749, 'height': 1335};
-	
-	// addDots.create = function (newDot) {
-		
-
-	// };
-	
-	// DotsProps.seatDot = function (e) {
- //        this.lastX = this.x;
- //        this.lastY = this.y;
- //        this.x = e.offsetX;
- //        this.y = e.offsetY;
- //        this.elements.push({
- //            "type": this.currentTool,
- //            "x": this.x,
- //            "y": this.y,
- //            "lx": this.lastX,
- //            "ly": this.lastY,
- //            "r": this.radius,
- //            "f": 0,
- //            "sw": this.sw
- //        });
-
-        
- //    };
 
 	return DotsProps;
-
 
 });

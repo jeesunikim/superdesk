@@ -26,7 +26,18 @@ app.factory('BarbariansFactory', function ($http) {
 		'UX'
 	];
 
-	// Maybe Team
+	Barbarians.seating = {
+		"r": null,
+		"x": null,
+		"y": null 
+	}
+	
+	Barbarians.teams = [
+		'Samsung',
+		'Pepsi',
+		'Etihad',
+		'Kind'
+	]
 
 	Barbarians.allBarbarians = [];
 
@@ -38,12 +49,9 @@ app.factory('BarbariansFactory', function ($http) {
 		return $http.put('/barbarians/' + id + '/edit', newBarbarian);
 	};
 
-	Barbarians.get = function (category) {
-		var params = category ? {
-			category: category
-		} : {};
+	Barbarians.get = function () {
 
-		return $http.get('/barbarians', { params : params }).then(function (response) {
+		return $http.get('/barbarians').then(function (response) {
 			Barbarians.allBarbarians = response.data;
 			return response.data;
 		});

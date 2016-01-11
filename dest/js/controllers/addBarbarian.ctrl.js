@@ -1,8 +1,12 @@
-app.controller('addBarbarianController', function ($scope, newBarbarian, BarbariansFactory, DotsFactory) {
+app.controller('AddCtrl', function ($scope, newBarbarian, BarbariansFactory, $rootScope, DotsFactory) {
 	
 	$scope.newBarbarian = newBarbarian;
-
+		// returns null for department, name, seating
+	console.log($scope.newBarbarian, "scope.newBarbarian");
 	$scope.departments = BarbariansFactory.departments;
+	$scope.teams = BarbariansFactory.teams;
+    $rootScope.$broadcast('fieldsAdded', $scope.newBarbarian);
+
 
 	$scope.addBarbarian = function () {
 		BarbariansFactory.create($scope.newBarbarian)
@@ -11,11 +15,12 @@ app.controller('addBarbarianController', function ($scope, newBarbarian, Barbari
 		});
 	};
 
-	$scope.$on('dotAdded', function (evnt, newBarbarian) {
+
+	$scope.$on('dotAdded', function (event, newBarbarian) {
 		$scope.newBarbarian = newBarbarian;
 		$scope.addBarbarian();
+		// angular.extend(newBarbarian, $scope.newBarbarian)
 	});
-
-	console.log($scope.newBarbarian.seating, "controller's newbarbarianseat")
+	console.log(BarbariansFactory.allBarbarians, "all Barbarians");
 
 });
