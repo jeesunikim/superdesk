@@ -9,7 +9,7 @@
 	<section id="nav">
 		<div ng-controller="DropdownCtrl" class="btn-group search" dropdown is-open="status.isopen">
 
-			
+
 			<button id="single-button" type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
 				Search <span class="caret"></span>
 			</button>
@@ -19,9 +19,9 @@
 
 		</div>
 		<div class="input-group" ng-controller="SearchBarCtrl">
-            <input type="search" ng-model="search"class="form-control" ng-click="$event.stopPropagation()" ng-change="runSearch()">
-    </div>
-		<div ng-controller="addBarbarianController">
+			<input type="search" ng-model="search"class="form-control" ng-click="$event.stopPropagation()" ng-change="runSearch()">
+		</div>
+		<div ng-controller="AddCtrl">
 			<form class="new-barbarian-form" name="newBarbarian" ng-submit="newBarbarian.$valid && addBarbarian()">
 				<h2>Add a New Barbarian!</h2>
 
@@ -34,7 +34,7 @@
 
 				<div class="form-group">
 					<label>Department:</label>
-					<select class="selected form-control" ng-model="newBarbarian.department">
+					<select class="selected form-control" ng-model="newBarbarian.department" required />
 						<option value="" selected disabled>Select a department</option>
 						<option ng-repeat="department in departments">
 							{{ department }}
@@ -42,10 +42,13 @@
 					</select>
 				</div>
 
-				<!-- <div class="form-group">
-					<label>Team:</label>
-					<input type="text" name="barbarianTeam" ng-model="newBarbarian.team" required />
-				</div> -->
+				<div class="form-group">
+					<label>Team(s):</label>
+					<label ng-repeat="team in teams">
+						{{ team.name }} <input type="checkbox" ng-click="team.selected == !team.selected" ng-model="newBarbarian.team.selected" />
+						<br/>{{ newBarbarian.team.selected }}
+					</label>
+				</div>
 
 				<div class="form-group">
 					<label>Add a seat:</label>
@@ -60,32 +63,35 @@
 
 
 	<div id="superdesk" class="superdesk" ng-controller="DotsCtrl">
-	<!-- Raphael JS Map Here -->
-	  
+		<!-- Raphael JS Map Here -->
 		<svg ng-click="addDot($event)" ng-attr-height="{{graph.height}}" ng-attr-width="{{graph.width}}">
-		  	<image id="kort" sketch:type="MSBitmapLayer" x="-3" y="-3" width="749" height="1335" xlink:href="images/just_superdesk.png"></image>
-		  	<!-- existed dots -->
-		  	<g ng-repeat="ele in existedDotsArr">
-				<g ng-switch on="ele.type">
-				    <circle ng-attr-cx="{{ele.x}}" ng-attr-cy="{{ele.y}}" ng-attr-r="{{ele.r}}" stroke-width="{{ele.sw||sw}}" class="{'focus':ele.f===1}">
-				    </circle>
+			<image id="kort" sketch:type="MSBitmapLayer" x="-3" y="-3" width="749" height="1335" xlink:href="images/just_superdesk.png"></image>
+			<!-- adding a new dot -->
+			<g ng-repeat="ele in existedDotsArr">
+				<g ng-switch on="ele.seating.type">
+					<circle ng-attr-cx="{{ele.x}}" ng-attr-cy="{{ele.y}}" ng-attr-r="{{ele.r}}" stroke-width="{{ele.sw||sw}}" class="{'focus':ele.f===1}">
+					</circle>
 				</g>
 			</g>
-		  	<!-- new dots -->
-	    <!-- 	<g ng-repeat="ele in elements">
-	    		{{ele.x}}
-				<g ng-switch on="ele.type">
-				    <circle ng-switch-when="0" ng-attr-cx="{{ele.x}}" ng-attr-cy="{{ele.y}}" ng-attr-r="{{ele.r}}" stroke-width="{{ele.sw||sw}}" class="{'focus':ele.f===1}">
-				    </circle>
+			<!-- existed dots -->
+			<g ng-repeat="barbarian in Barbarians">
+				<g ng-switch on="barbarian.seating.type">
+					<circle ng-attr-cx="{{barbarian.seating.x}}" ng-attr-cy="{{barbarian.seating.y}}" ng-attr-r="{{barbarian.seating.r}}" stroke-width="{{barbarian.seating.sw||sw}}" class="{'focus':barbarian.seating.f===1}" ng-mouseover="showBarbarian()" ng-mouseleave="hideBarbarian()">
+					</circle>
+					<rect width="125" height="100" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y}}" stroke-width="{{barbarian.seating.sw||sw}}" style="fill: rgba(0,0,0,.5)" class="{'focus':barbarian.seating.f===1}" ng-show="barbarianInfo">
+					</rect>
+					<text fill="white">
+						<tspan dy="1.2em" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y}}" ng-show="barbarianInfo">{{barbarian.name}}</tspan>
+	    				<tspan dy="1.2em" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y+18}}" ng-show="barbarianInfo">{{barbarian.department}}</tspan>
+					</text>
 				</g>
-			</g> -->
-				
+			</g>
 		</svg>
 
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 	<script src="/js/lib/ui-bootstrap-tpls-0.13.3.min.js"></script>
 	<script src="/js/modules/app.js"></script>	
@@ -96,9 +102,5 @@
 	<script src="/js/controllers/dots.ctrl.js"></script>
 	<script src="/js/controllers/search.ctrl.js"></script>
 	<script src="/js/controllers/dropdown.ctrl.js"></script>
-	<!-- Raphael
-	<script src="/js/lib/raphael-min.js"></script>
-	<script src="/js/superdesk.js"></script>
-	-->
 </body>
 </html>
