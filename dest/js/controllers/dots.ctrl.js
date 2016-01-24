@@ -29,6 +29,7 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
     }
 
     $scope.addDot = function (e) {
+        if($scope.enabled == true ){
         $scope.x = e.offsetX;
         $scope.y = e.offsetY;
         $scope.r = 8;
@@ -48,8 +49,7 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
         console.log($scope.Barbarians, "$scope.Barbarians")
         console.log($scope.newBarbarian.seating, "seating");
         $rootScope.$broadcast('dotAdded', $scope.newBarbarian);
-    }
-
+    }}
     $scope.graph = DotsFactory.graph;
-
+    console.log($scope.enabled, "Enabled");
 });

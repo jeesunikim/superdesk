@@ -1,11 +1,12 @@
-app.controller('AddCtrl', function ($scope, newBarbarian, BarbariansFactory, $rootScope, DotsFactory) {
+app.controller('editCtrl', function ($scope, newBarbarian, BarbariansFactory, $rootScope, DotsFactory) {
 	
-	$rootScope.enabled = false;
-	$scope.$on('formEnabled', function () {
-		$rootScope.enabled = !$rootScope.enabled;
-	});
 
-	console.log($scope.enabled);
+	$scope.editBarbarian = function (id, newBarbarian) {
+		BarbariansFactory.edit($scope.newBarbarian)
+			.then(function (newBarbarian) {
+				BarbariansFactory.allBarbarians.push(newBarbarian);
+			});
+		};
 
 	$scope.newBarbarian = newBarbarian;
 		// returns null for department, name, seating
