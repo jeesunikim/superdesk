@@ -1,11 +1,10 @@
 app.controller('AddCtrl', function ($scope, newBarbarian, BarbariansFactory, $rootScope, DotsFactory) {
 	
+	// AddController only works if $scope.enabled is set to true
 	$rootScope.enabled = false;
 	$scope.$on('formEnabled', function () {
 		$rootScope.enabled = !$rootScope.enabled;
 	});
-
-	console.log($scope.enabled);
 
 	$scope.newBarbarian = newBarbarian;
 		// returns null for department, name, seating
