@@ -12,7 +12,7 @@ app.factory('DotsFactory', function () {
 	
 	DotsProps.storedDots = [];
 	
-	DotsProps.graph = {'width': 749, 'height': 1335};
+	DotsProps.graph = {'width': 1200, 'height': 900};
 
 	return DotsProps;
 

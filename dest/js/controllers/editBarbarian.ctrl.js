@@ -1,12 +1,11 @@
 app.controller('editCtrl', function ($scope, newBarbarian, BarbariansFactory, $rootScope, DotsFactory) {
-	
 
 	$scope.editBarbarian = function (id, newBarbarian) {
 		BarbariansFactory.edit($scope.newBarbarian)
-			.then(function (newBarbarian) {
-				BarbariansFactory.allBarbarians.push(newBarbarian);
-			});
-		};
+		.then(function (newBarbarian) {
+			BarbariansFactory.allBarbarians.push(newBarbarian);
+		});
+	};
 
 	$scope.newBarbarian = newBarbarian;
 		// returns null for department, name, seating

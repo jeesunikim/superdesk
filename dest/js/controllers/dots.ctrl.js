@@ -50,6 +50,7 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
         console.log($scope.newBarbarian.seating, "seating");
         $rootScope.$broadcast('dotAdded', $scope.newBarbarian);
     }}
+    
     $scope.graph = DotsFactory.graph;
-    console.log($scope.enabled, "Enabled");
+
 });
