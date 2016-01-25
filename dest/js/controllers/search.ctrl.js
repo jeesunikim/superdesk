@@ -25,4 +25,5 @@ app.controller('SearchBarCtrl', function ($scope, newBarbarian, BarbariansFactor
     $scope.collapseSearch = function() {
         $scope.searchResults = "";
     };
+
 });
