@@ -17,7 +17,7 @@
 			<div class="input-group" ng-controller="SearchBarCtrl">
 			<input type="search" ng-model="search" class="form-control" ng-click="$event.stopPropagation()" ng-change="runSearch()">
 			</div>
-			<input type="checkbox" ng-click="checkboxClicked">show {{ barbarianInfo }}
+			<input type="checkbox" ng-click="$broadcast('checkboxClicked')">show {{ barbarianInfo }}
 		</div>
 	</section>
 	<div id="superdesk" class="superdesk" ng-controller="DotsCtrl">
@@ -92,7 +92,7 @@
 		<div class="edit-form">
 			<div ng-controller="editCtrl">
 				<form class="new-barbarian-form" name="newBarbarian" ng-submit="newBarbarian.$valid && editBarbarian()">
-					<button>Edit a Barbarian! "{{enabled}}"</button>
+					<h2>Edit a Barbarian! "{{enabled}}"</h2>
 
 					<div class="form-group">
 						<label>Name:</label>

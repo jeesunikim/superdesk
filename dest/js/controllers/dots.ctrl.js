@@ -20,9 +20,11 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
 
     this.barbarianInfo = false;
 
-    $rootScope.$broadcast('checkboxClicked', function (){
-        this.barbarianInfo = !this.barbarianInfo;
-    });
+    $rootScope.barbarianInfo = false;
+    
+    // $rootScope.$broadcast('checkboxClicked', function (){
+    //     this.barbarianInfo = !this.barbarianInfo;
+    // });
 
     $rootScope.showBarbarian = function () {
         this.barbarianInfo = true;
