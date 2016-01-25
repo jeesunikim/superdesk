@@ -1,4 +1,4 @@
-app.controller('DropdownCtrl', function ($scope, $log, BarbariansFactory) {
+app.controller('DropdownCtrl', function ($scope, $rootScope, $log, BarbariansFactory) {
 
 	// Name, Departments, Team	
 
@@ -16,5 +16,14 @@ app.controller('DropdownCtrl', function ($scope, $log, BarbariansFactory) {
 		$scope.status.isopen = !$scope.status.isopen;
 	};
 
+
+	 	$scope.$on('checkboxClicked', function(event, barbarianInfo) {
+	 			$scope.barbarianInfo == barbarianInfo;
+	 			$scope.barbarianInfo = !$scope.barbarianInfo;
+	 			console.log(barbarianInfo, "hey");
+	 	});
+
+
+  // };
 	$scope.categories = BarbariansFactory.categories;
 });
