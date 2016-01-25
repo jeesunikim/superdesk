@@ -8,16 +8,20 @@
 <body>
 	<section class="search">
 		<div ng-controller="DropdownCtrl" class="btn-group search">
-			<button id="single-button" type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-				Search <span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-				<li role="menuitem" ng-model="category"ng-repeat="category in categories"><a href="#">{{ category }}</a></li>
-			</ul>
-			<div class="input-group" ng-controller="SearchBarCtrl">
-			<input type="search" ng-model="search" class="form-control" ng-click="$event.stopPropagation()" ng-change="runSearch()">
+			<div class="search-form">
+				<button id="single-button" type="button" class="btn btn-primary dropdown-toggle searchbtn" dropdown-toggle ng-disabled="disabled">
+					Search <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+					<li role="menuitem" ng-model="category"ng-repeat="category in categories"><a href="#">{{ category }}</a></li>
+				</ul>
+				<div class="input-group" ng-controller="SearchBarCtrl">
+				<input type="search" ng-model="search" class="form-control" ng-click="$event.stopPropagation()" ng-change="runSearch()">
+				</div>
 			</div>
-			<input type="checkbox" ng-click="$broadcast('checkboxClicked')">show {{ barbarianInfo }}
+			<div class="check">
+				<input type="checkbox" ng-click="$broadcast('checkboxClicked')">Display Barbarians' Information
+			</div>
 		</div>
 	</section>
 	<div id="superdesk" class="superdesk" ng-controller="DotsCtrl">
@@ -92,7 +96,7 @@
 		<div class="edit-form">
 			<div ng-controller="editCtrl">
 				<form class="new-barbarian-form" name="newBarbarian" ng-submit="newBarbarian.$valid && editBarbarian()">
-					<h2>Edit a Barbarian! "{{enabled}}"</h2>
+					<span>Edit a Barbarian!</span>
 
 					<div class="form-group">
 						<label>Name:</label>

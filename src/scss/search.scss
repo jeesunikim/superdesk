@@ -5,4 +5,17 @@ section.search {
 	max-width: 800px;
 	width: 100%;
 	padding:2% 0;
+	.search {
+		.search-form {
+			display:inline-block;
+			.searchbtn {
+				float: left;
+			}
+		}
+	}
+	.check {
+		top: 50%;
+		transform: translateY(-50%);
+		display: inline-block;
+	}
 }
