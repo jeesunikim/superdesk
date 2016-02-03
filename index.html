@@ -8,16 +8,20 @@
 <body>
 	<section class="search">
 		<div ng-controller="DropdownCtrl" class="btn-group search">
-			<button id="single-button" type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-				Search <span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-				<li role="menuitem" ng-model="category"ng-repeat="category in categories"><a href="#">{{ category }}</a></li>
-			</ul>
-			<div class="input-group" ng-controller="SearchBarCtrl">
-			<input type="search" ng-model="search" class="form-control" ng-click="$event.stopPropagation()" ng-change="runSearch()">
+			<div class="search-form">
+				<button id="single-button" type="button" class="btn btn-primary dropdown-toggle searchbtn" dropdown-toggle ng-disabled="disabled">
+					Search <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+					<li role="menuitem" ng-model="category"ng-repeat="category in categories"><a href="#">{{ category }}</a></li>
+				</ul>
+				<div class="input-group" ng-controller="SearchBarCtrl">
+				<input type="search" ng-model="search" class="form-control" ng-click="$event.stopPropagation()" ng-change="runSearch()">
+				</div>
 			</div>
-			<input type="checkbox" ng-click="checkboxClicked">show {{ barbarianInfo }}
+			<div class="check">
+				<input type="checkbox" ng-click="$broadcast('checkboxClicked')">Display Barbarians' Information
+			</div>
 		</div>
 	</section>
 	<div id="superdesk" class="superdesk" ng-controller="DotsCtrl">
@@ -34,7 +38,7 @@
 			<!-- existed dots -->
 			<g ng-repeat="barbarian in Barbarians">
 				<g ng-switch on="barbarian.seating.type">
-					<circle ng-attr-cx="{{barbarian.seating.x}}" ng-attr-cy="{{barbarian.seating.y}}" ng-attr-r="{{barbarian.seating.r}}" stroke-width="{{barbarian.seating.sw||sw}}" class="{'focus':barbarian.seating.f===1}" ng-mouseover="showBarbarian()" ng-mouseleave="hideBarbarian()" draggable="true">
+					<circle data-ng-attr-id="{{barbarian._id}}" data-ng-click="getId($event)" ng-attr-cx="{{barbarian.seating.x}}" ng-attr-cy="{{barbarian.seating.y}}" ng-attr-r="{{barbarian.seating.r}}" stroke-width="{{barbarian.seating.sw||sw}}" class="{'focus':barbarian.seating.f===1}" ng-mouseover="showBarbarian()" ng-mouseleave="hideBarbarian()" draggable="true">
 					</circle>
 					<rect width="125" height="100" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y}}" stroke-width="{{barbarian.seating.sw||sw}}" style="fill: rgba(0,0,0,.5)" class="{'focus':barbarian.seating.f===1}" ng-show="barbarianInfo">
 					</rect>
@@ -50,7 +54,7 @@
 	<section class="form">
 		<div class="add-form">
 			<div ng-controller="AddCtrl">
-				<form class="new-barbarian-form" name="newBarbarian" ng-submit="newBarbarian.$valid && addBarbarian()">
+				<form class="new-barbarian-form" name="newBarbarian" ng-submit="newBarbarian.$valid && addBarbarian(newBarbarian)">
 					<button ng-click="$broadcast('formEnabled')">Add a New Barbarian! "{{enabled}}"</button>
 
 					<div class="form-error" ng-if="new-barbarian-form.$invalid && new-barbarian-form.$submitted">Please fill out the fields</div>
@@ -91,12 +95,12 @@
 		
 		<div class="edit-form">
 			<div ng-controller="editCtrl">
-				<form class="new-barbarian-form" name="newBarbarian" ng-submit="newBarbarian.$valid && editBarbarian()">
-					<button>Edit a Barbarian! "{{enabled}}"</button>
+				<form class="new-barbarian-form" name="newBarbarian" ng-submit="newBarbarian.$valid && editBarbarian(newBarbarian)">
+					<span>Edit a Barbarian!</span>
 
 					<div class="form-group">
 						<label>Name:</label>
-						<input type="text" name="barbarianName" ng-model="newBarbarian.name" required />
+						<input type="text" name="barbarianName" value="{{barbarian.name}} Jeesun" required />
 					</div>
 
 					<div class="form-group">

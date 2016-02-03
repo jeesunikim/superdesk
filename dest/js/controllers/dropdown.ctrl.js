@@ -16,12 +16,9 @@ app.controller('DropdownCtrl', function ($scope, $rootScope, $log, BarbariansFac
 		$scope.status.isopen = !$scope.status.isopen;
 	};
 
-
-	 	$scope.$on('checkboxClicked', function(event, barbarianInfo) {
-	 			$scope.barbarianInfo == barbarianInfo;
-	 			$scope.barbarianInfo = !$scope.barbarianInfo;
-	 			console.log(barbarianInfo, "hey");
-	 	});
+	$scope.$on('checkboxClicked', function () {
+		$rootScope.barbarianInfo = !$rootScope.barbarianInfo;
+	});
 
 
   // };

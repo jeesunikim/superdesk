@@ -1,4 +1,4 @@
-app.controller('editCtrl', function ($scope, newBarbarian, BarbariansFactory, $rootScope, DotsFactory) {
+app.controller('editCtrl', function ($scope, $http, newBarbarian, BarbariansFactory, $rootScope, DotsFactory) {
 
 	$scope.editBarbarian = function (id, newBarbarian) {
 		BarbariansFactory.edit($scope.newBarbarian)
@@ -7,35 +7,29 @@ app.controller('editCtrl', function ($scope, newBarbarian, BarbariansFactory, $r
 		});
 	};
 
+	$scope.$on('dotClicked', function (event, clickedDot) {
+		$http({
+        url:"/barbarians",
+        method: "GET",
+        params: {id: clickedDot}
+        }).then(function(res) {
+        	console.log(res.data[0], "res.data");
+            // for(var i=0; i<res.data.length; i++){
+            // res.data[i].seating;
+            // $scope.existedDots = res.data[i].seating;
+            // $scope.existedDotsArr.push($scope.existedDots);    
+            // $scope.Barbarians.push(res.data[i]);
+    });
+		console.log(clickedDot, "clickedDot");
+		$scope.newBarbarian.seating = newBarbarian.seating;
+		// console.log($scope.newBarbarian.seating, "the Seats");
+	});
 	$scope.newBarbarian = newBarbarian;
 		// returns null for department, name, seating
 	
 	$scope.departments = BarbariansFactory.departments;
 	
 	$scope.teams = [];
-	// $scope.selectedTeams = [];
 
-	// for(var i=0; i<BarbariansFactory.teams.length; i++){
-	// 	$scope.teams.push(BarbariansFactory.teams[i]);
-	// 	if($scope.teams[i].selected == true){
-	// 		$scope.selectedTeams.push($scope.team.selected)
-	// 		$scope.newBarbarian.team = team.selected;
-	// 	}
-	// }
-
-	console.log($scope.teams, "teams");
-
-	$scope.addBarbarian = function (newBarbarian) {
-		BarbariansFactory.create($scope.newBarbarian)
-		.then(function (newBarbarian) {
-			BarbariansFactory.allBarbarians.push(newBarbarian);
-		});
-	};
-	$scope.$on('dotAdded', function (event, newBarbarian) {
-		$scope.newBarbarian.seating = newBarbarian.seating;
-		console.log($scope.newBarbarian.seating, "the Seats");
-	});
-
-	console.log(BarbariansFactory.allBarbarians, "all Barbarians");
-
+	
 });

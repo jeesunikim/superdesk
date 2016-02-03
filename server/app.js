@@ -24,9 +24,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(publicPath));
 
-// app.use('/', routes);
-// app.use('/users', users);
-
 app.get('/', function (req, res) {
   res.sendFile(indexHtmlPath);
 });
@@ -59,6 +56,17 @@ app.post('/barbarians', function (req, res, next) {
 			res.json(newBarbarian);
 		}
 	});
+});
+
+app.get('/barbarians/:id', function(req, res, next) {
+  BarbarianModel.findById(req.params.id)
+  .populate('person', 'firstnam')
+  .exec(function (err, eachBarbarian) {
+    if (err) {
+          return res.json(500, { error: 'Cannot find the phone number' });
+    }
+    res.json(eachBarbarian);
+  });
 });
 
 // catch 404 and forward to error handler
