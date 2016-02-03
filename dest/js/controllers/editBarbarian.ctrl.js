@@ -13,8 +13,7 @@ app.controller('editCtrl', function ($scope, $http, newBarbarian, BarbariansFact
         method: "GET"
         }).then(function(res) {
     		$scope.eachBarbarian = res.data;
-    		$scope.eachBarbarian.name = res.data.name;
-    		console.log($scope.eachBarbarian.name, "scope.editBarbarian");
+    		// this is where moving the seat dots should happen as well.
 	    });
 	});
 	$scope.newBarbarian = newBarbarian;
