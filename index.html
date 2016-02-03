@@ -100,12 +100,12 @@
 
 					<div class="form-group">
 						<label>Name:</label>
-						<input type="text" name="barbarianName" value="{{barbarian.name}} Jeesun" required />
+						<input type="text" name="barbarianName" ng-model="eachBarbarian.name" value="eachBarbarian.name" required />
 					</div>
 
 					<div class="form-group">
 						<label>Department:</label>
-						<select class="selected form-control" ng-model="newBarbarian.department" required />
+						<select class="selected form-control" ng-model="eachBarbarian.department" required />
 							<option value="" selected disabled>Select a department</option>
 							<option ng-repeat="department in departments">
 								{{ department }}
@@ -116,8 +116,8 @@
 					<div class="form-group">
 						<label>Team(s):</label>
 						<label ng-repeat="team in teams">
-							{{ team.name }} <input type="checkbox" ng-click="team.selected == !team.selected" ng-model="newBarbarian.team.selected" />
-							<br/>{{ newBarbarian.team.selected }}
+							{{ team.name }} <input type="checkbox" ng-click="team.selected == !team.selected" ng-model="eachBarbarian.team.selected" />
+							<br/>{{ eachBarbarian.team.selected }}
 						</label>
 					</div>
 

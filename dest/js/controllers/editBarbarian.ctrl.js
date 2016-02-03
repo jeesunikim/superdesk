@@ -9,20 +9,12 @@ app.controller('editCtrl', function ($scope, $http, newBarbarian, BarbariansFact
 
 	$scope.$on('dotClicked', function (event, clickedDot) {
 		$http({
-        url:"/barbarians",
-        method: "GET",
-        params: {id: clickedDot}
+        url:"/barbarians/" + clickedDot,
+        method: "GET"
         }).then(function(res) {
-        	console.log(res.data[0], "res.data");
-            // for(var i=0; i<res.data.length; i++){
-            // res.data[i].seating;
-            // $scope.existedDots = res.data[i].seating;
-            // $scope.existedDotsArr.push($scope.existedDots);    
-            // $scope.Barbarians.push(res.data[i]);
-    });
-		console.log(clickedDot, "clickedDot");
-		$scope.newBarbarian.seating = newBarbarian.seating;
-		// console.log($scope.newBarbarian.seating, "the Seats");
+    		$scope.eachBarbarian = res.data;
+    		// this is where moving the seat dots should happen as well.
+	    });
 	});
 	$scope.newBarbarian = newBarbarian;
 		// returns null for department, name, seating
