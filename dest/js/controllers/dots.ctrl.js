@@ -21,10 +21,6 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
     this.barbarianInfo = false;
 
     $rootScope.barbarianInfo = false;
-    
-    // $rootScope.$broadcast('checkboxClicked', function (){
-    //     this.barbarianInfo = !this.barbarianInfo;
-    // });
 
     $rootScope.showBarbarian = function () {
         this.barbarianInfo = true;
@@ -34,6 +30,19 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
         this.barbarianInfo = false;
     }
 
+    $scope.clickedDot;
+
+    // $rootScope.getId = function (event) {
+    //     console.log(event.target.id);
+    //     return event.target.id;
+    // }
+    $scope.getId = function (event) {
+        console.log(event.target.id);
+        $scope.clickedDot = event.target.id;
+        $rootScope.$broadcast('dotClicked', $scope.clickedDot);
+    }
+    
+    /* Add a dot */
     $scope.addDot = function (e) {
         if($scope.enabled == true ){
         $scope.x = e.offsetX;
