@@ -60,7 +60,6 @@ app.post('/barbarians', function (req, res, next) {
 
 app.get('/barbarians/:id', function(req, res, next) {
   BarbarianModel.findById(req.params.id)
-  .populate('person', 'firstnam')
   .exec(function (err, eachBarbarian) {
     if (err) {
           return res.json(500, { error: 'Cannot find the phone number' });

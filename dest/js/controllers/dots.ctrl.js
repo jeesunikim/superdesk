@@ -30,12 +30,6 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
         this.barbarianInfo = false;
     }
 
-    $scope.clickedDot;
-
-    // $rootScope.getId = function (event) {
-    //     console.log(event.target.id);
-    //     return event.target.id;
-    // }
     $scope.getId = function (event) {
         console.log(event.target.id);
         $scope.clickedDot = event.target.id;

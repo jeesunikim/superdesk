@@ -9,11 +9,10 @@ app.controller('editCtrl', function ($scope, $http, newBarbarian, BarbariansFact
 
 	$scope.$on('dotClicked', function (event, clickedDot) {
 		$http({
-        url:"/barbarians",
-        method: "GET",
-        params: {id: clickedDot}
+        url:"/barbarians/" + clickedDot,
+        method: "GET"
         }).then(function(res) {
-        	console.log(res.data[0], "res.data");
+        	console.log(res.data, "res.data");
             // for(var i=0; i<res.data.length; i++){
             // res.data[i].seating;
             // $scope.existedDots = res.data[i].seating;
