@@ -1,33 +1,37 @@
 app.controller('SearchBarCtrl', function ($scope, $rootScope, $http, newBarbarian, BarbariansFactory) {
     // Iterating Object Properties
-    $scope.barbariansArr = [
+    this.barbariansArr = [
         {
             name: "Search Barbarian(s) by:",
-            selectable: true
+            selectable: false
         },
         {
             name: "Name",
-            selectable: false
+            selectable: true
         },
         {
             name: "Department",
-            selectable: false
+            selectable: true
         }
     ];
 
-    $scope.selectedItem = $scope.barbariansArr[0].name;
+    $scope.departments = BarbariansFactory.departments;
+    $rootScope.isBeingUsed = false;
 
     /* watching every move of selectedItem */
     $scope.$watch('selectedItem', function (){
         console.log("update, update", $scope.selectedItem.name);
-    });
+        
+    });    
 
-
-     $scope.$on('onSearch', function (event, barbarians) {
-        $rootScope.searchText;
+    $scope.$on('onSearch', function (event, barbarians) {
+        
         $scope.searchResults = barbarians;
 
-        $rootScope.runSearch = function() {
+        console.log(barbarians,"DEPT");
+
+        $scope.runSearch = function(input) {
+            $rootScope.searchText;
             barbarians.forEach(function (element, index) {
                 if($scope.selectedItem.name == "Name"){
                     console.log(element.name, index, "hey");
@@ -35,6 +39,9 @@ app.controller('SearchBarCtrl', function ($scope, $rootScope, $http, newBarbaria
                     console.log(element.department, index, "hey");
                 }
             });
+
+            // whatever's output should be filtered through
+            console.log(input, "input");
         }
     }); 
 
@@ -45,9 +52,7 @@ app.controller('SearchBarCtrl', function ($scope, $rootScope, $http, newBarbaria
 
     $scope.search = "";
     $scope.searchResults = [];
-
     $scope.departmentsArr = [];
-    $scope.departments = null;
 
     $scope.$on('checkboxClicked', function () {
         $rootScope.barbarianInfo = !$rootScope.barbarianInfo;
