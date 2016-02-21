@@ -3,8 +3,7 @@ app.factory('BarbariansFactory', function ($http) {
 
 	Barbarians.categories = [
 		'Name',
-		'Department',
-		'Team'
+		'Department'
 	];
 
 	Barbarians.departments =[
@@ -30,13 +29,6 @@ app.factory('BarbariansFactory', function ($http) {
 		"r": null,
 		"x": null,
 		"y": null 
-	}
-	
-	Barbarians.teams = {
-		"Samsung": false,
-		"Etihad": false,
-		"Kind": false,
-		"Pepsi": false
 	}
 	
 	Barbarians.allBarbarians = [];

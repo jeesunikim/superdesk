@@ -10,9 +10,6 @@ app.controller('AddCtrl', function ($scope, newBarbarian, BarbariansFactory, $ro
 		// returns null for department, name, seating
 	
 	$scope.departments = BarbariansFactory.departments;
-	
-	$scope.teams = [];
-
 
 	$scope.addBarbarian = function (newBarbarian) {
 		BarbariansFactory.create($scope.newBarbarian)
@@ -22,9 +19,5 @@ app.controller('AddCtrl', function ($scope, newBarbarian, BarbariansFactory, $ro
 	};
 	$scope.$on('dotAdded', function (event, newBarbarian) {
 		$scope.newBarbarian.seating = newBarbarian.seating;
-		// console.log($scope.newBarbarian.seating, "the Seats");
 	});
-
-	// console.log(BarbariansFactory.allBarbarians, "all Barbarians");
-
 });
