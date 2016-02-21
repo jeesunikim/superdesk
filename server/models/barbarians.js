@@ -14,7 +14,6 @@ var barbarianSchema = new mongoose.Schema({
 	},
 	name: String,
 	department: String,
-	team: String,
 	seating: {
 		x: Number,
 		y: Number,

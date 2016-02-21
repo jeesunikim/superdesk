@@ -8,12 +8,12 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
         method: "GET"
         }).then(function(res) {
             for(var i=0; i<res.data.length; i++){
-            res.data[i].seating;
             $scope.existedDots = res.data[i].seating;
             $scope.existedDotsArr.push($scope.existedDots);    
             $scope.Barbarians.push(res.data[i]);
         }
-        console.log($scope.existedDotsArr, "Existed Data");
+        console.log($scope.Barbarians, "Scope Barbarians");
+        $rootScope.$broadcast('onSearch', $scope.Barbarians);
     });
 
     $scope.newBarbarian = newBarbarian; 
@@ -55,7 +55,6 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
         $scope.newBarbarian.seating.y = $scope.y;
         $scope.newBarbarian.seating.r = 8;
         DotsFactory.storedDots = angular.copy($scope.existedDotsArr);
-        console.log($scope.Barbarians, "$scope.Barbarians")
         console.log($scope.newBarbarian.seating, "seating");
         $rootScope.$broadcast('dotAdded', $scope.newBarbarian);
     }}
