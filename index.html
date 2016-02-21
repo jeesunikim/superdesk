@@ -7,21 +7,17 @@
 </head>
 <body>
 	<section class="search">
-		<div ng-controller="SearchBarCtrl" class="btn-group search">
+		<div ng-controller="SearchBarCtrl as eachSelected" class="btn-group search">
 			<div class="search-form">
 				<p>Selected Item is {{selectedItem.name}}
-					<select class="selected form-control" ng-model="selectedItem" ng-disabled="eachArr.selectable" ng-options="eachArr.name for eachArr in barbariansArr">
-						<!-- <option ng-repeat="barbarian in barbariansArr" ng-disabled="barbarian.selectable" value="{{ barbarian.name }}">
-							{{ barbarian.name }}
-						</option> -->
-						<!-- <select ng-model="key" ng-model="item" ng-options="key as key for (key, val) in divisions" ng-change="update(key)"></select> -->
-					</select>
+					<br/>
+					A total number of Departments is {{departments.length}}</p>
+				<select class="selected form-control" ng-model="selectedItem" ng-init="selectedItem = eachSelected.barbariansArr[0]" ng-options="eachArr.name for eachArr in eachSelected.barbariansArr"></select>
 
-					<div class="input-group">
-						<input type="search" ng-model="searchText" class="form-control" ng-change="runSearch()">
-					</div>
-					<!-- <input type="search" ng-model="searchText" class="form-control" ng-click="$event.stopPropagation()" ng-change="runSearch()"> -->
-				</div>	
+				<div class="input-group">
+					<input type="search" ng-model="searchText" class="form-control" ng-change="runSearch(searchText)">
+				</div>
+			</div>	
 
 				<div class="check">
 					<input type="checkbox" ng-click="$broadcast('checkboxClicked')">Display Barbarians' Information
@@ -40,7 +36,7 @@
 					</g>
 				</g>
 				<!-- existed dots -->
-				<g ng-repeat="barbarian in Barbarians | filter: searchText">
+				<g ng-repeat="barbarian in Barbarians">
 					<g ng-switch on="barbarian.seating.type">
 						<circle data-ng-attr-id="{{barbarian._id}}" data-ng-click="getId($event)" ng-attr-cx="{{barbarian.seating.x}}" ng-attr-cy="{{barbarian.seating.y}}" ng-attr-r="{{barbarian.seating.r}}" stroke-width="{{barbarian.seating.sw||sw}}" class="{'focus':barbarian.seating.f===1}" ng-mouseover="showBarbarian()" ng-mouseleave="hideBarbarian()" draggable="true">
 						</circle>
@@ -133,5 +129,6 @@
 		<script src="/js/controllers/dots.ctrl.js"></script>
 		<script src="/js/controllers/search.ctrl.js"></script>
 		<script src="/js/controllers/editBarbarian.ctrl.js"></script>
+		<script src="/js/directive/search.filter.js"></script>
 	</body>
 </html>

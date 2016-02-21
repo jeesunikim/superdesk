@@ -18,9 +18,9 @@ app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, Ba
 
     $scope.newBarbarian = newBarbarian; 
 
-    this.barbarianInfo = false;
+    $rootScope.searchText;
 
-    $rootScope.barbarianInfo = false;
+    this.barbarianInfo = false;
 
     $rootScope.showBarbarian = function () {
         this.barbarianInfo = true;
