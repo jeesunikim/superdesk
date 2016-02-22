@@ -1,4 +1,4 @@
-app.controller('AddCtrl', function ($scope, newBarbarian, BarbariansFactory, $rootScope, DotsFactory) {
+app.controller('AddCtrl', function ($scope, addService, BarbariansFactory, $rootScope, DotsFactory) {
 	
 	// AddController only works if $scope.enabled is set to true
 	$rootScope.enabled = false;
@@ -6,13 +6,13 @@ app.controller('AddCtrl', function ($scope, newBarbarian, BarbariansFactory, $ro
 		$rootScope.enabled = !$rootScope.enabled;
 	});
 
-	$scope.newBarbarian = newBarbarian;
+	$scope.newBarbarian = addService.newBarbarian;
 		// returns null for department, name, seating
 	
 	$scope.departments = BarbariansFactory.departments;
 
 	$scope.addBarbarian = function (newBarbarian) {
-		BarbariansFactory.create($scope.newBarbarian)
+		addService.create($scope.newBarbarian)
 		.then(function (newBarbarian) {
 			BarbariansFactory.allBarbarians.push(newBarbarian);
 		});

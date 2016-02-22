@@ -1,22 +1,29 @@
-app.controller('DotsCtrl', function ($scope, $rootScope, newBarbarian, $http, BarbariansFactory, DotsFactory){
+app.controller('DotsCtrl', function ($scope, $rootScope, addService, BarbariansFactory, DotsFactory){
     $scope.existedDots = null;
     $scope.existedDotsArr = [];
     $scope.Barbarians = [];
 
-    $http({
-        url:"/barbarians",
-        method: "GET"
-        }).then(function(res) {
-            for(var i=0; i<res.data.length; i++){
-            $scope.existedDots = res.data[i].seating;
-            $scope.existedDotsArr.push($scope.existedDots);    
-            $scope.Barbarians.push(res.data[i]);
-        }
-        console.log($scope.Barbarians, "Scope Barbarians");
-        $rootScope.$broadcast('onSearch', $scope.Barbarians);
+    BarbariansFactory.allBarbarians().then(function(each){
+        $scope.Barbarians = each;
+        $scope.existedDots = each.seating;
+        $scope.existedDotsArr.push($scope.existedDots);
+        console.log($scope.existedDotsArr, "DotsArr", each, "each");
     });
 
-    $scope.newBarbarian = newBarbarian; 
+    // $http({
+    //     url:"/barbarians",
+    //     method: "GET"
+    //     }).then(function(res) {
+    //         for(var i=0; i<res.data.length; i++){
+    //         $scope.existedDots = res.data[i].seating;
+    //         $scope.existedDotsArr.push($scope.existedDots);    
+    //         $scope.Barbarians.push(res.data[i]);
+    //     }
+    //     console.log($scope.Barbarians, "Scope Barbarians");
+    //     $rootScope.$broadcast('onSearch', $scope.Barbarians);
+    // });
+
+    $scope.newBarbarian = addService.newBarbarian; 
 
     $rootScope.searchText;
 

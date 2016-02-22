@@ -1,4 +1,4 @@
-app.factory('BarbariansFactory', function ($http) {
+app.factory('BarbariansFactory', function (addService) {
 	var Barbarians = {};
 
 	Barbarians.categories = [
@@ -29,30 +29,15 @@ app.factory('BarbariansFactory', function ($http) {
 		"r": null,
 		"x": null,
 		"y": null 
-	}
-	
-	Barbarians.allBarbarians = [];
-
-	Barbarians.create = function (newBarbarian) {
-		return $http.post('/barbarians', newBarbarian);
 	};
 
-	Barbarians.edit = function (id, newBarbarian) {
-		return $http.put('/barbarians/' + id + '/edit', newBarbarian);
-	};
-
-	Barbarians.get = function () {
-
-		return $http.get('/barbarians').then(function (response) {
-			Barbarians.allBarbarians = response.data;
-			return response.data;
-		});
-	};
-
-	Barbarians.delete = function (id) {
-		return $http.delete('/barbarians/' + id + '/delete');
+	Barbarians.allBarbarians = function () {
+		return addService.getBarbarians().then(function (res){
+					this.existedDots = res;
+          return this.existedDots;
+      });
 	};
 
 	return Barbarians;
 
-})
+});
