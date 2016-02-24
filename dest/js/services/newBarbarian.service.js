@@ -1,5 +1,6 @@
 app.service('addService', function ($http) {
-
+	// shared object
+	
 	this.newBarbarian = {
 		name: null,
 		department: null,

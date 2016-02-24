@@ -1,4 +1,5 @@
 app.factory('BarbariansFactory', function (addService) {
+	// shared function
 	var Barbarians = {};
 
 	Barbarians.categories = [
@@ -37,6 +38,11 @@ app.factory('BarbariansFactory', function (addService) {
           return this.existedDots;
       });
 	};
+
+	Barbarians.fields = {
+		searchModel: 'hey',
+    selectedItem: ''
+	}
 
 	return Barbarians;
 
