@@ -9,13 +9,13 @@
 	<section class="search">
 		<div ng-controller="SearchBarCtrl as eachSelected" class="btn-group search">
 			<div class="search-form">
-				<p>Selected Item is {{selectedItem.name}}
+				<p>Selected Item is {{fields.selectedItem.name}}
 					<br/>
 					A total number of Departments is {{departments.length}}</p>
-				<select class="selected form-control" ng-model="selectedItem" ng-init="selectedItem = eachSelected.barbariansArr[0]" ng-options="eachArr.name for eachArr in eachSelected.barbariansArr"></select>
+				<select class="selected form-control" ng-model="fields.selectedItem" ng-init="fields.selectedItem = eachSelected.barbariansArr[0]" ng-options="eachArr.name for eachArr in eachSelected.barbariansArr"></select>
 
 				<div class="input-group">
-					<input type="search" ng-model="searchText" class="form-control" ng-change="runSearch(searchText)">
+					<input type="search" ng-model="fields.searchModel" class="form-control" ng-change="runSearch(fields.searchModel)">
 				</div>
 			</div>	
 
@@ -36,7 +36,8 @@
 					</g>
 				</g>
 				<!-- existed dots -->
-				<g ng-repeat="barbarian in Barbarians">
+				<g ng-repeat="barbarian in Barbarians | filter: fields.searchModel">
+				<!-- <g ng-repeat="barbarian in Barbarians | filter: (!disableFilter || '' ) && { value: searchText }" > -->
 					<g ng-switch on="barbarian.seating.type">
 						<circle data-ng-attr-id="{{barbarian._id}}" data-ng-click="getId($event)" ng-attr-cx="{{barbarian.seating.x}}" ng-attr-cy="{{barbarian.seating.y}}" ng-attr-r="{{barbarian.seating.r}}" stroke-width="{{barbarian.seating.sw||sw}}" class="{'focus':barbarian.seating.f===1}" ng-mouseover="showBarbarian()" ng-mouseleave="hideBarbarian()" draggable="true">
 						</circle>

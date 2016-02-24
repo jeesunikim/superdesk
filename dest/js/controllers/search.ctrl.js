@@ -1,4 +1,4 @@
-app.controller('SearchBarCtrl', function ($scope, $rootScope, $http, newBarbarian, BarbariansFactory) {
+app.controller('SearchBarCtrl', function ($scope, $rootScope, $http, BarbariansFactory) {
     // Iterating Object Properties
     this.barbariansArr = [
         {
@@ -15,44 +15,42 @@ app.controller('SearchBarCtrl', function ($scope, $rootScope, $http, newBarbaria
         }
     ];
 
+
+
     $scope.departments = BarbariansFactory.departments;
+    $scope.fields = {
+        searchModel: BarbariansFactory.fields.searchModel,
+        selectedItem: BarbariansFactory.fields.selectedItem
+    }
+    console.log(BarbariansFactory.fields.searchModel, "fields");
     $rootScope.isBeingUsed = false;
 
     /* watching every move of selectedItem */
     $scope.$watch('selectedItem', function (){
-        console.log("update, update", $scope.selectedItem.name);
-        
+        // console.log("update", $scope.fields.selectedItem.name);
     });    
 
-    $scope.$on('onSearch', function (event, barbarians) {
+    // $scope.$on('onSearch', function (event, barbarians) {
         
-        $scope.searchResults = barbarians;
+    //     $scope.searchResults = barbarians;
 
-        console.log(barbarians,"DEPT");
+    //     console.log(barbarians,"DEPT");
 
-        $scope.runSearch = function(input) {
-            $rootScope.searchText;
-            barbarians.forEach(function (element, index) {
-                if($scope.selectedItem.name == "Name"){
-                    console.log(element.name, index, "hey");
-                }else if($scope.selectedItem.name == "Department"){
-                    console.log(element.department, index, "hey");
-                }
-            });
+    $rootScope.fields = $rootScope.fields || {};
 
-            // whatever's output should be filtered through
-            console.log(input, "input");
-        }
-    }); 
-
-    console.log($scope.selectedItem, "selected");
-    // Object.keys(newBarbarian).forEach(function (key, index) {
-    //     $scope.barbariansArr.push(key.charAt(0).toUpperCase() + key.substring(1,key.length));
-    // });
-
-    $scope.search = "";
-    $scope.searchResults = [];
-    $scope.departmentsArr = [];
+    $scope.runSearch = function(input) {
+        $rootScope.fields.searchModel = input;
+        // console.log($rootScope.fields.searchModel, "searching");
+        // if($scope.selectedItem.name == "Department") {
+        //     $scope.departments.forEach(function(element){
+        //         if((element.name) == $rootScope.searchText){
+        //             console.log(element.name, "hey");
+        //             return true;
+        //         }
+        //     });
+        // }
+    }
+    // }); 
 
     $scope.$on('checkboxClicked', function () {
         $rootScope.barbarianInfo = !$rootScope.barbarianInfo;
