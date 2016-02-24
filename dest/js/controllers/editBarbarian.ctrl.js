@@ -15,6 +15,7 @@ app.controller('editCtrl', function ($scope, $http, BarbariansFactory, $rootScop
         method: "GET"
         }).then(function(res) {
     		$scope.eachBarbarian = res.data;
+    		console.log($scope.eachBarbarian, "each");
     		// this is where moving the seat dots should happen as well.
 	    });
 	});

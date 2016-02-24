@@ -12,10 +12,7 @@ app.controller('AddCtrl', function ($scope, addService, BarbariansFactory, $root
 	$scope.departments = BarbariansFactory.departments;
 
 	$scope.addBarbarian = function (newBarbarian) {
-		addService.create($scope.newBarbarian)
-		.then(function (newBarbarian) {
-			BarbariansFactory.allBarbarians.push(newBarbarian);
-		});
+		addService.create($scope.newBarbarian);
 	};
 	$scope.$on('dotAdded', function (event, newBarbarian) {
 		$scope.newBarbarian.seating = newBarbarian.seating;
