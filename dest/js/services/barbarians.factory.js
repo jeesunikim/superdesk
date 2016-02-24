@@ -31,7 +31,7 @@ app.factory('BarbariansFactory', function (addService) {
 		"x": null,
 		"y": null 
 	};
-
+	
 	Barbarians.allBarbarians = function () {
 		return addService.getBarbarians().then(function (res){
 					this.existedDots = res;

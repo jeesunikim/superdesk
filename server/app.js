@@ -35,18 +35,6 @@ app.get('/barbarians', function(req, res, next) {
     })
     .then(null, next);
   });
-    
-
-app.get('/search', function(req, res) {
-    console.log("search letters are: ", req.query.search);
-    var regex = new RegExp(req.query.search, 'i');  // 'i' makes it case insensitive
-    BarbarianModel.find({name: regex}, function(err, obj){
-        if (err) {
-            return handleError(err);
-        }
-        res.json(obj);
-    });
-});
 
 app.post('/barbarians', function (req, res, next) {
 	BarbarianModel.create(req.body, function (err, newBarbarian) {

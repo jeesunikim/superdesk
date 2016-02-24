@@ -13,7 +13,6 @@ app.controller('DotsCtrl', function ($scope, $rootScope, addService, BarbariansF
             $scope.BarbariansDep.push(element.department);
             $scope.BarbariansNames.push(element.name);
         });
-        console.log($scope.BarbariansDep, "Department" + ";", $scope.BarbariansNames, "Names");
     });
 
     $scope.newBarbarian = addService.newBarbarian; 
@@ -37,8 +36,6 @@ app.controller('DotsCtrl', function ($scope, $rootScope, addService, BarbariansF
         console.log(event.target.id);
         $scope.clickedDot = event.target.id;
         $rootScope.$broadcast('dotClicked', $scope.clickedDot);
-        console.log($scope.searchedInput, "searchModel rootscope");
-        console.log($scope.selectedSelect, "selectedSelect");
     }
     
     /* Add a dot */
