@@ -1,4 +1,4 @@
-app.controller('DotsCtrl', function ($scope, $rootScope, addService, BarbariansFactory, DotsFactory){
+app.controller('DotsCtrl', function ($scope, $rootScope, addService, BarbariansFactory, DotsFactory, sharedValues){
     $scope.existedDots = null;
     $scope.existedDotsArr = [];
     $scope.Barbarians = [];
@@ -17,7 +17,8 @@ app.controller('DotsCtrl', function ($scope, $rootScope, addService, BarbariansF
     });
 
     $scope.newBarbarian = addService.newBarbarian; 
-
+    $scope.nameValue = sharedValues.getObject();
+    $scope.deptValue = sharedValues.getObject();
     // $scope.searchedInput = $rootScope.fields.searchModel; 
     // $scope.selectedSelect = $rootScope.fields.selectedItem; 
     // console.log($scope.searchedInput, "searchModel rootscope", $scope.selectedSelect, "selectedSelect");
