@@ -8,18 +8,18 @@ app.factory('BarbariansFactory', function (addService) {
 	];
 
 	Barbarians.departments =[
-		'Account Management',
+		'Account',
 		'Analytics',
 		'CMS',
 		'Creative',
 		'Executive',
 		'Finance',
-		'Human Resources',
+		'HR',
 		'IT',
 		'Lot112',
 		'Media & Distribution',
 		'Production',
-		'Public Relations',
+		'PR',
 		'QA',
 		'Strategy',
 		'Technology',
@@ -40,8 +40,8 @@ app.factory('BarbariansFactory', function (addService) {
 	};
 
 	Barbarians.fields = {
-		searchModel: 'hey',
-    selectedItem: ''
+		searchBarbarian: '',
+    selectedDept: ''
 	}
 
 	return Barbarians;

@@ -2,15 +2,26 @@ section.search {
 	text-align: center;
 	margin: 0 auto;
 	position: relative;
-	max-width: 800px;
+	max-width: 1300px;
 	width: 100%;
 	padding:2% 0;
 	.search {
+		position: relative;
 		.search-form {
-			display:inline-block;
+			display:block;
+			margin-bottom: 10px;
 			.searchbtn {
 				float: left;
 			}
+			.btn{
+				margin-right: 5px;
+			}
+			.btn:last-child {
+				margin-right: 0;
+			}
+		}
+		.input-group {
+			display: inline-block;
 		}
 	}
 	.check {
