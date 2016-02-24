@@ -39,10 +39,10 @@ app.factory('BarbariansFactory', function (addService) {
       });
 	};
 
-	Barbarians.fields = {
-		searchBarbarian: '',
-    selectedDept: ''
-	}
+	// Barbarians.fields = {
+	// 	searchBarbarian: '',
+ //    selectedDept: ''
+	// }
 
 	return Barbarians;
 
