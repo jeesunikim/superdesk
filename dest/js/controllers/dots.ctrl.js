@@ -2,30 +2,25 @@ app.controller('DotsCtrl', function ($scope, $rootScope, addService, BarbariansF
     $scope.existedDots = null;
     $scope.existedDotsArr = [];
     $scope.Barbarians = [];
+    $scope.BarbariansDep = [];
+    $scope.BarbariansNames = [];
+
 
     BarbariansFactory.allBarbarians().then(function(each){
         $scope.Barbarians = each;
-        $scope.existedDots = each.seating;
-        $scope.existedDotsArr.push($scope.existedDots);
-        console.log($scope.existedDotsArr, "DotsArr", each, "each");
+        each.forEach(function (element) {
+            $scope.existedDotsArr.push(element.seating); //each Barbarian's dot is being stored in an array
+            $scope.BarbariansDep.push(element.department);
+            $scope.BarbariansNames.push(element.name);
+        });
+        console.log($scope.BarbariansDep, "Department" + ";", $scope.BarbariansNames, "Names");
     });
-
-    // $http({
-    //     url:"/barbarians",
-    //     method: "GET"
-    //     }).then(function(res) {
-    //         for(var i=0; i<res.data.length; i++){
-    //         $scope.existedDots = res.data[i].seating;
-    //         $scope.existedDotsArr.push($scope.existedDots);    
-    //         $scope.Barbarians.push(res.data[i]);
-    //     }
-    //     console.log($scope.Barbarians, "Scope Barbarians");
-    //     $rootScope.$broadcast('onSearch', $scope.Barbarians);
-    // });
 
     $scope.newBarbarian = addService.newBarbarian; 
 
-    $rootScope.searchText;
+    // $scope.searchedInput = $rootScope.fields.searchModel; 
+    // $scope.selectedSelect = $rootScope.fields.selectedItem; 
+    // console.log($scope.searchedInput, "searchModel rootscope", $scope.selectedSelect, "selectedSelect");
 
     this.barbarianInfo = false;
 
@@ -41,6 +36,8 @@ app.controller('DotsCtrl', function ($scope, $rootScope, addService, BarbariansF
         console.log(event.target.id);
         $scope.clickedDot = event.target.id;
         $rootScope.$broadcast('dotClicked', $scope.clickedDot);
+        console.log($scope.searchedInput, "searchModel rootscope");
+        console.log($scope.selectedSelect, "selectedSelect");
     }
     
     /* Add a dot */
