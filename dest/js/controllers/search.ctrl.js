@@ -1,34 +1,21 @@
 app.controller('SearchBarCtrl', function ($scope, $rootScope, $http, BarbariansFactory) {
     // Iterating Object Properties
-    this.barbariansArr = [
-        {
-            name: "Search Barbarian(s) by:",
-            selectable: false
-        },
-        {
-            name: "Name",
-            selectable: true
-        },
-        {
-            name: "Department",
-            selectable: true
-        }
-    ];
-
+ 
 
 
     $scope.departments = BarbariansFactory.departments;
-    $scope.fields = {
-        searchModel: BarbariansFactory.fields.searchModel,
-        selectedItem: BarbariansFactory.fields.selectedItem
+    $rootScope.fields = {
+        searchBarbarian: BarbariansFactory.fields.searchBarbarian,
+        selectedDept: BarbariansFactory.fields.selectedDept
     }
     console.log(BarbariansFactory.fields.searchModel, "fields");
     $rootScope.isBeingUsed = false;
+    $scope.getDept = function (e) {
+        $rootScope.fields.selectedDept = e.target.value;
 
-    /* watching every move of selectedItem */
-    $scope.$watch('selectedItem', function (){
-        // console.log("update", $scope.fields.selectedItem.name);
-    });    
+            $rootScope.fields.searchBarbarian = "";
+
+    }
 
     // $scope.$on('onSearch', function (event, barbarians) {
         
@@ -39,7 +26,7 @@ app.controller('SearchBarCtrl', function ($scope, $rootScope, $http, BarbariansF
     $rootScope.fields = $rootScope.fields || {};
 
     $scope.runSearch = function(input) {
-        $rootScope.fields.searchModel = input;
+        $rootScope.fields.searchBarbarian = input;
         // console.log($rootScope.fields.searchModel, "searching");
         // if($scope.selectedItem.name == "Department") {
         //     $scope.departments.forEach(function(element){
