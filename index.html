@@ -6,7 +6,10 @@
 	<link rel="stylesheet" href="/css/style.min.css">
 </head>
 <body>
-	<section class="search">
+	<header>
+		<img src="images/tbg-logo.png" alt="tbg logo" />
+	</header>
+	<nav class="search">
 		<div ng-controller="SearchBarCtrl" class="btn-group search">
 			<div class="search-form">
 				<button class="btn btn-primary" type="submit" ng-repeat="department in departments" ng-click="getDept($event)" value="{{department}}">{{department}}</button>
@@ -18,11 +21,11 @@
 					<input type="checkbox" ng-click="$broadcast('checkboxClicked')">Display Barbarians' Information
 				</div>
 			</div>
-		</section>
+		</nav>
 		<div id="superdesk" class="superdesk" ng-controller="DotsCtrl">
 
 			<svg ng-click="addDot($event)" ng-attr-height="{{graph.height}}" ng-attr-width="{{graph.width}}">
-				<image id="kort" sketch:type="MSBitmapLayer" x="-3" y="-3" width="1200" height="600" xlink:href="images/just_superdesk.png"></image>
+				<image id="kort" sketch:type="MSBitmapLayer" x="-3" y="-3" width="1250" height="698" xlink:href="images/superdesk.png"></image>
 				<!-- adding a new dot -->
 				<g ng-repeat="ele in existedDotsArr">
 					<g ng-switch on="ele.seating.type">
