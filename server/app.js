@@ -43,9 +43,19 @@ app.get('/barbarians/:id', function(req, res, next) {
   BarbarianModel.findById(req.params.id)
   .exec(function (err, eachBarbarian) {
     if (err) {
-        return res.json(500, { error: 'Cannot find the phone number' });
+        return res.json(500, { error: 'Cannot find this Barbarian' });
     }
     res.json(eachBarbarian);
+  });
+});
+
+app.delete('/barbarians/:id/delete', function(req, res, next) {
+  BarbarianModel.findById(req.params.id).remove()
+  .exec(function (err, eachBarbarian) {
+    if (err) {
+        return res.json(500, { error: 'Cannot find this Barbarian to delete' });
+    }
+    res.json({ message: 'deleted' });
   });
 });
 
