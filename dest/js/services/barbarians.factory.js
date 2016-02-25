@@ -31,19 +31,22 @@ app.factory('BarbariansFactory', function (addService) {
 		"x": null,
 		"y": null 
 	};
-	
+
 	Barbarians.allBarbarians = function () {
 		return addService.getBarbarians().then(function (res){
-					this.existedDots = res;
-          return this.existedDots;
+			this.existedDots = res;
+        	return this.existedDots;
       });
 	};
 
-	// Barbarians.fields = {
-	// 	searchBarbarian: '',
- //    selectedDept: ''
-	// }
-
 	return Barbarians;
+
+	// Barbarians.editBarbarian = function () {
+	// 	return addService.editBarbarian(id, editedBarbarian).then(function(res){
+	// 			this.editedBarbarian = res;
+	// 			return this.editedBarbarian;
+	// 	})
+	// }
+	
 
 });

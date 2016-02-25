@@ -45,6 +45,8 @@
 				</g>
 			</svg>
 
+			<modal-dialog show='modalShown'></modal-dialog>
+
 		</div>
 		<section class="form">
 			<div class="add-form">
@@ -79,38 +81,6 @@
 					</form>
 				</div>
 			</div>
-
-
-			<div class="edit-form">
-				<div ng-controller="editCtrl">
-					<form class="new-barbarian-form" name="eachBarbarian" ng-submit="eachBarbarian.$valid && editBarbarian(newBarbarian)">
-						<span>Edit a Barbarian!</span>
-
-						<div class="form-group">
-							<label>Name:</label>
-							<input type="text" name="barbarianName" ng-model="eachBarbarian.name" value="eachBarbarian.name" required />
-						</div>
-
-						<div class="form-group">
-							<label>Department:</label>
-							<select class="selected form-control" ng-model="eachBarbarian.department" required />
-								<option value="" selected disabled>Select a department</option>
-								<option ng-repeat="department in departments">
-									{{ department }}
-								</option>
-							</select>
-						</div>
-
-						<div class="form-group">
-							<label>Add a seat:</label>
-							<button type="button" class="btn btn-primary" name="barbarianSeat" />+</button>
-						</div>
-
-						<button class="btn btn-primary" type="submit">Add a New Barbarian</button>
-
-					</form>
-				</div>
-			</div>
 		</section>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
@@ -125,5 +95,6 @@
 		<script src="/js/controllers/dots.ctrl.js"></script>
 		<script src="/js/controllers/search.ctrl.js"></script>
 		<script src="/js/controllers/editBarbarian.ctrl.js"></script>
+		<script src="/js/directive/editModal.js"></script>
 	</body>
 </html>
