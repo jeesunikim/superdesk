@@ -4,7 +4,7 @@ app.controller('DotsCtrl', function ($scope, $rootScope, addService, BarbariansF
     $scope.Barbarians = [];
     $scope.BarbariansDep = [];
     $scope.BarbariansNames = [];
-
+    $scope.modalShown = false;
 
     BarbariansFactory.allBarbarians().then(function(each){
         $scope.Barbarians = each;
@@ -33,10 +33,10 @@ app.controller('DotsCtrl', function ($scope, $rootScope, addService, BarbariansF
     }
 
     $scope.getId = function (event) {
-        console.log(event.target.id);
+        $scope.modalShown = !$scope.modalShown;
         $scope.clickedDot = event.target.id;
         $rootScope.$broadcast('dotClicked', $scope.clickedDot);
-    }
+    } 
     
     /* Add a dot */
     $scope.addDot = function (e) {

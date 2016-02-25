@@ -20,8 +20,16 @@ app.service('addService', function ($http) {
 		return $http.post('/barbarians', newBarbarian);
 	};
 
-	this.edit = function (id, newBarbarian) {
-		return $http.put('/barbarians/' + id + '/edit', newBarbarian);
+	this.editBarbarian = function (id, editedBarbarian) {
+		return $http.post('/barbarians/' + id + '/update', editedBarbarian);
+	};
+
+	this.getOneBarbarian = function (id) {
+		return $http.get('/barbarians/' + id)
+		.then(getData)
+		.catch(function() {
+			console.log("We can't find any Barbarians :( ")
+		});
 	};
 
 	this.getBarbarians = function () {
