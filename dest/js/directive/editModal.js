@@ -7,14 +7,16 @@ app.controller('modalCtrl', function($scope, addService, BarbariansFactory, $roo
             $scope.itsId = res;
             $scope.eachBarbarian = data;
         });
-
-        console.log($scope.eachBarbarian, "data name");
-    })
+    });
     $scope.editBarbarian = function (clickedDot, eachBarbarian) {
         clickedDot = $scope.itsId;
         addService.editBarbarian(clickedDot, eachBarbarian);
         $scope.hideModal();
     };
+    $scope.deleteBarbarian = function (clickedDot) {
+        clickedDot = $scope.itsId;
+        addService.delete(clickedDot);
+        $scope.hideModal();
     };
 });
 
