@@ -10,12 +10,6 @@ app.controller('editCtrl', function ($scope, BarbariansFactory, addService) {
 			$scope.eachBarbarian = res;
 		});
 
-		// Below works
-		$scope.editBarbarian = {
-			"name" : "monkey",
-			"department" : "Design"
-		};
-
 	});
 		// Below doesn't work
 			// $scope.editBarbarian.name = "monkey";
