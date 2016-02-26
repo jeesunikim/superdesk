@@ -15,6 +15,13 @@ header {
 		text-align: center;
 		margin:0 auto;
 	}
+	span {
+		position: absolute;
+		color: rgb(248, 233, 20);
+		right: 10px;
+		top: 10px;
+		cursor: pointer;
+	}
 }
 .superdesk {
 	width: 100%;
