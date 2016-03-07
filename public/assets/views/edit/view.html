@@ -1,0 +1,30 @@
+<div class="edit-form">
+	<form class="new-barbarian-form" name="eachBarbarian">
+		<span>Edit a Barbarian!</span>
+
+		<div class="form-group">
+			<label>Name:</label>
+			<input type="text" name="barbarianName" ng-model="eachBarbarian.name" value="eachBarbarian.name">
+		</div>
+
+		<div class="form-group">
+			<label>Department:</label>
+			<select class="selected form-control" ng-model="eachBarbarian.department">
+				<option value="" selected disabled>Select a department</option>
+				<option ng-repeat="department in departments">
+					{{ department }}
+				</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label>Add a seat:</label>
+			<button type="button" class="btn btn-primary" name="barbarianSeat" />+</button>
+		</div>
+
+		<button class="btn btn-primary" ng-click="editBarbarian(id, eachBarbarian)">Edit</button>
+
+		<button class="btn btn-primary" ng-click="deleteBarbarian(id)">Delete</button>
+
+	</form>
+</div>
