@@ -11,6 +11,13 @@ module.exports = function( App ) {
 			
 			$scope.departments = BarbariansFactory.departments;
 
+			$scope.executive = BarbariansFactory.executive;
+
+			$scope.checking = function() {
+
+				console.log($scope.executive, "checking");
+			}
+
 			$scope.addBarbarian = function (newBarbarian) {
 				addService.create($scope.newBarbarian);
 			};

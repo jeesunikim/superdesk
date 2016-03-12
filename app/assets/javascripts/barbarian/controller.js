@@ -7,6 +7,8 @@ module.exports = function( App ) {
             $scope.BarbariansNames = [];
             $scope.modalShown = false;
 
+            console.log("executive");
+
             BarbariansFactory.allBarbarians().then(function(each){
                 $scope.Barbarians = each;
                 each.forEach(function (element) {

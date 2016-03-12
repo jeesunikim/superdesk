@@ -27,6 +27,7 @@ module.exports = function( App ) {
 				'UX'
 			];
 
+			Barbarians.executive = Boolean;
 			Barbarians.seating = {
 				"r": null,
 				"x": null,
