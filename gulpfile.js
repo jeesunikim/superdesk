@@ -7,8 +7,10 @@ rename = require('gulp-rename'),
 copy = require('gulp-copy'),
 browserify = require('browserify'),
 source = require('vinyl-source-stream'),
+nodemon = require('gulp-nodemon'),
 buffer = require('vinyl-buffer'),
-del = require('del');
+del = require('del'),
+gulpSequence = require('gulp-sequence');
 
 var srcRoot = "app/assets",
 distRoot = "public/assets";
@@ -22,6 +24,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('browserify', function () {
+	console.log("testing");
 	return browserify(srcRoot + '/javascripts/app.js')
 		.bundle()
 		//Pass desired output filename to vinyl-source-stream
@@ -37,6 +40,14 @@ gulp.task('compress', function() {
 		.pipe(uglify())
 		.pipe(gulp.dest( distRoot +'/javascripts'));
 });
+
+gulp.task('demon', function () {
+  nodemon({
+    script: 'start.js'
+  , ext: 'js html'
+  , env: { 'NODE_ENV': 'development' }
+  })
+})
 
 gulp.task('clean', function (cb) {
 	del([distRoot], cb);
@@ -55,4 +66,9 @@ gulp.task('watch', function () {
 	gulp.watch(srcRoot + '/stylesheets/**/*.scss', ['sass']);
 });
 
-gulp.task('default', ['sass', 'copyImg', 'copyHTML', 'browserify', 'watch']);
+gulp.task('default', function (cb) {
+	gulpSequence(['sass', 'copyImg', 'copyHTML', 'browserify','demon', 'watch'], function(){
+		console.log("Running");
+		cb();
+	})
+});

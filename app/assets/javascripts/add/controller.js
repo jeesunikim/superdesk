@@ -2,9 +2,12 @@ module.exports = function( App ) {
 	App.controller('AddCtrl', ['$scope', 'addService', 'BarbariansFactory', '$rootScope' , function ($scope, addService, BarbariansFactory, $rootScope) {
 			// AddController only works if $scope.enabled is set to true
 			$rootScope.enabled = false;
+
 			$scope.$on('formEnabled', function () {
 				$rootScope.enabled = !$rootScope.enabled;
 			});
+
+
 
 			$scope.newBarbarian = addService.newBarbarian;
 				// returns null for department, name, seating
@@ -17,6 +20,7 @@ module.exports = function( App ) {
 
 				console.log($scope.executive, "checking");
 			}
+			
 
 			$scope.addBarbarian = function (newBarbarian) {
 				addService.create($scope.newBarbarian);
