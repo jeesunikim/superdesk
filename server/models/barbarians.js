@@ -18,7 +18,8 @@ var barbarianSchema = new mongoose.Schema({
 		x: Number,
 		y: Number,
 		r: Number
-	}
+	},
+	executive: Boolean
 });
 
 module.exports = mongoose.model('Barbarian', barbarianSchema);

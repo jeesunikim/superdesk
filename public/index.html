@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Barbarians">
+<head>
+	<title>Superdesk Seat Chart</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/css/style.min.css">
+</head>
+<body>
+	<header>
+		<img src="/assets/images/tbg-logo-02.png" alt="tbg logo" />
+		<!-- <div ng-controller="inputPwd"> -->
+			<!-- <span ng-click="openPwd()">Want to add/edit a Barbarian?</span> -->
+			<!-- <password-in show="showPassword"></password-in> -->
+		<!-- </div> -->
+	</header>
+	<nav class="search">
+		<div ng-controller="SearchBarCtrl" class="btn-group search">
+			<div class="search-form">
+				<button class="btn btn-primary" type="submit" ng-repeat="department in departments" ng-click="getDept($event)" value="{{department}}">{{department}}</button>
+			</div>
+				<div class="input-group">
+					<input type="search" ng-model="nameValue.searchName" class="form-control" ng-change="runSearch(nameValue.searchName)">
+				</div>
+				<div class="check">
+					<input type="checkbox" ng-click="$broadcast('checkboxClicked')">Display Barbarians' Information
+				</div>
+			</div>
+		</nav>
+		<div id="superdesk" class="superdesk" ng-controller="BarbarianCtrl">
+
+			<svg ng-click="addDot($event)" ng-attr-height="{{graph.height}}" ng-attr-width="{{graph.width}}">
+				<image id="kort" sketch:type="MSBitmapLayer" x="-3" y="-3" width="1250" height="698" xlink:href="/assets/images/superdesk.png"></image>
+				<!-- adding a new dot -->
+				<g ng-repeat="ele in existedDotsArr">
+					<g ng-switch on="ele.seating.type">
+						<circle ng-attr-cx="{{ele.x}}" ng-if="enabled == true" ng-attr-cy="{{ele.y}}" ng-attr-r="{{ele.r}}" stroke-width="{{ele.sw||sw}}" class="{'focus':ele.f===1}">
+						</circle>
+					</g>
+				</g>
+				<!-- existed dots -->
+				<g ng-repeat="barbarian in Barbarians | filter: nameValue.searchName || deptValue.selectedDept ">
+					<g ng-switch on="barbarian.seating.type">
+						<circle data-ng-attr-id="{{barbarian._id}}" data-ng-click="getId($event)" ng-attr-cx="{{barbarian.seating.x}}" ng-attr-cy="{{barbarian.seating.y}}" ng-attr-r="{{barbarian.seating.r}}" stroke-width="{{barbarian.seating.sw||sw}}" class="{'focus':barbarian.seating.f===1}" ng-mouseover="showBarbarian()" ng-mouseleave="hideBarbarian()" draggable="true">
+						</circle>
+						<rect width="125" height="100" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y}}" stroke-width="{{barbarian.seating.sw||sw}}" style="fill: rgba(0,0,0,.5)" class="{'focus':barbarian.seating.f===1}" ng-show="barbarianInfo">
+						</rect>
+						<text fill="white">
+							<tspan dy="1.2em" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y}}" ng-show="barbarianInfo">{{barbarian.name}}</tspan>
+							<tspan dy="1.2em" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y+18}}" ng-show="barbarianInfo">{{barbarian.department}}</tspan>
+						</text>
+					</g>
+				</g>
+			</svg>
+
+			<modal show='modalShown'>
+				<edit-dialog></edit-dialog>
+			</modal>
+
+		</div>
+		<section class="form">
+			<div class="add-form">
+				<div ng-controller="AddCtrl">
+					<form class="new-barbarian-form" name="newBarbarian" ng-submit="newBarbarian.$valid && addBarbarian(newBarbarian)">
+						<button ng-click="$broadcast('formEnabled')">Add a New Barbarian! "{{enabled}}"</button>
+
+						<div class="form-error" ng-if="new-barbarian-form.$invalid && new-barbarian-form.$submitted">Please fill out the fields</div>
+
+						<div class="form-group">
+							<label>Name:</label>
+							<input type="text" name="barbarianName" ng-model="newBarbarian.name" required />
+						</div>
+
+						<div class="form-group">
+							<label>Department:</label>
+							<select class="selected form-control" ng-model="newBarbarian.department" required />
+								<option value="" selected disabled>Select a department</option>
+								<option ng-repeat="department in departments">
+									{{ department }}
+								</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Executive?</label>
+							<input type="checkbox" ng-click="checking()" ng-model="newBarbarian.executve"> 
+						</div>
+
+						<div class="form-group">
+							<label>Add a seat:</label>
+							<button type="button" class="btn btn-primary" name="barbarianSeat" />+</button>
+						</div>
+
+						<button class="btn btn-primary" type="submit">Add a New Barbarian</button>
+
+					</form>
+				</div>
+			</div>
+		</section>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+		<script src="/assets/javascripts/bundle.js"></script>
+	</body>
+</html>

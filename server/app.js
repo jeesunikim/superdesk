@@ -8,8 +8,8 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-var indexHtmlPath = path.join(__dirname, '../index.html');
-var publicPath = path.join(__dirname, '../dest');
+var indexHtmlPath = path.join(__dirname, '../public/index.html');
+var publicPath = path.join(__dirname, '../public');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
