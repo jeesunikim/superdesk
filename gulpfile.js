@@ -66,9 +66,12 @@ gulp.task('watch', function () {
 	gulp.watch(srcRoot + '/stylesheets/**/*.scss', ['sass']);
 });
 
+// gulp.task( 'default', ['sass', 'copyImg', 'copyHTML', 'browserify'], ['demon', 'watch'] );
+
 gulp.task('default', function (cb) {
-	gulpSequence(['sass', 'copyImg', 'copyHTML', 'browserify','demon', 'watch'], function(){
+	gulpSequence(['sass', 'copyImg', 'copyHTML', 'browserify'],['demon', 'watch'], function(){
 		console.log("Running");
 		cb();
 	})
+	// gulpSequence makes this happen
 });
