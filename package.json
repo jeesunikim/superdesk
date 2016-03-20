@@ -27,6 +27,7 @@
     "morgan": "~1.6.1",
     "node-sass": "^3.4.2",
     "serve-favicon": "~2.3.0",
+    "shortid": "^2.2.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }
