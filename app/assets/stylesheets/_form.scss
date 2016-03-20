@@ -1,0 +1,13 @@
+.form {
+	width: 50%;
+	height: 100%;
+	max-height: 265px;
+	margin: 2% 0;
+	.add-form {
+		float: left;
+		padding-left: 10%;
+	}
+	input[type=checkbox] {
+		display: inline-block;
+	}
+}
