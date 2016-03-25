@@ -9,7 +9,8 @@ module.exports = function( App ) {
 					x: null,
 					y: null,
 					r: null
-				}
+				},
+				executive: null
 			};
 
 			function getData(res) {

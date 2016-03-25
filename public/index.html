@@ -31,14 +31,14 @@
 			<svg ng-click="addDot($event)" ng-attr-height="{{graph.height}}" ng-attr-width="{{graph.width}}">
 				<image id="kort" sketch:type="MSBitmapLayer" x="-3" y="-3" width="1250" height="698" xlink:href="/assets/images/superdesk.png"></image>
 				<!-- adding a new dot -->
-				<g ng-repeat="ele in existedDotsArr">
+				<g ng-repeat="ele in existedDotsArr track by $index">
 					<g ng-switch on="ele.seating.type">
 						<circle ng-attr-cx="{{ele.x}}" ng-if="enabled == true" ng-attr-cy="{{ele.y}}" ng-attr-r="{{ele.r}}" stroke-width="{{ele.sw||sw}}" class="{'focus':ele.f===1}">
 						</circle>
 					</g>
 				</g>
 				<!-- existed dots -->
-				<g ng-repeat="barbarian in Barbarians | filter: nameValue.searchName || deptValue.selectedDept ">
+				<g ng-repeat="barbarian in Barbarians | filter: nameValue.searchName || deptValue.selectedDept track by $index">
 					<g ng-switch on="barbarian.seating.type">
 						<circle data-ng-attr-id="{{barbarian._id}}" data-ng-click="getId($event)" ng-attr-cx="{{barbarian.seating.x}}" ng-attr-cy="{{barbarian.seating.y}}" ng-attr-r="{{barbarian.seating.r}}" stroke-width="{{barbarian.seating.sw||sw}}" class="{'focus':barbarian.seating.f===1}" ng-mouseover="showBarbarian()" ng-mouseleave="hideBarbarian()" draggable="true">
 						</circle>
@@ -47,6 +47,7 @@
 						<text fill="white">
 							<tspan dy="1.2em" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y}}" ng-show="barbarianInfo">{{barbarian.name}}</tspan>
 							<tspan dy="1.2em" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y+18}}" ng-show="barbarianInfo">{{barbarian.department}}</tspan>
+							<tspan ng-show="{{barbarian.executive}}" dy="1.2em" ng-attr-x="{{barbarian.seating.x}}" ng-attr-y="{{barbarian.seating.y+36}}" ng-show="barbarianInfo">Executive</tspan>
 						</text>
 					</g>
 				</g>
@@ -82,7 +83,8 @@
 
 						<div class="form-group">
 							<label>Executive?</label>
-							<input type="checkbox" ng-click="checking()" ng-model="newBarbarian.executve"> 
+							<input type="checkbox" ng-model="newBarbarian.executive"> 
+							{{ newBarbarian.executive }} executive
 						</div>
 
 						<div class="form-group">
