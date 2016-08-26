@@ -4,7 +4,7 @@ Indepdent project I built as a student at Fullstack Academy. It's built on MEAN 
 
 ## Folder Structure
 ```
-supermesh
+Superdesk
 ├── /app
 │   ├── /assets
 │   │       ├── /images
@@ -50,12 +50,12 @@ supermesh
     - Executive (Boolean)
 
 ## How to start the app
-1)
+1) npm install
 ```
 $ npm install
 ```
 
-2)
+2) npm start
 ```
 $ npm start
 ```
