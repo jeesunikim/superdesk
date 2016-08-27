@@ -1,6 +1,6 @@
 # Superdesk
 
-Indepdent project I built as a student at Fullstack Academy. It's built on MEAN stack.
+Independent project that I built as a student at Fullstack Academy. It's built on MEAN stack.
 
 ## Folder Structure
 ```
